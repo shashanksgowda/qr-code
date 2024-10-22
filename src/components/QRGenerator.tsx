@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { create, toCanvas } from 'qrcode'
+import { toCanvas } from 'qrcode'
 
-const QRGenerator = ({text}) => {
-    const [canvas, setCanvas] = useState();
+interface IProps {
+    text: string
+}
+function QRGenerator ({text}: IProps)  {
+    const [canvas, setCanvas] = useState<HTMLElement | null>();
     useEffect(() => {
-        setCanvas(document.getElementById("canvas"));
+        if (document.getElementById("canvas")) {
+            setCanvas(document.getElementById("canvas"));
+        }
+        
     }, [])
     useEffect(() => {
         console.log('canvas', text)
